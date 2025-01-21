@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 詩, 오늘의 문장☕</title>
+    <meta property="og:image" content="https://drive.google.com/file/d/1Wg42o6VcG3kO58UqH9RmOFKBh-eweagA/view?usp=sharing">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:title" content="오늘의 詩, 오늘의 문장☕">
+    <meta property="og:description" content="당신의 하루를 위한 시 구절">
+
+    <!-- Twitter card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://drive.google.com/file/d/1Wg42o6VcG3kO58UqH9RmOFKBh-eweagA/view?usp=sharing">
+    <meta name="twitter:title" content="오늘의 詩, 오늘의 문장☕">
+    <meta name="twitter:description" content="당신의 하루를 위한 시 구절">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap'); /* 서로 다른 폰트 */
+
+        body {
+            font-family: 'Noto Serif KR', serif; /* 타이틀과 서브타이틀에 사용할 폰트 */
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            background-color: #fef8e4; /* 따뜻한 톤 배경 */
+            color: #333;
+            background-image: url('https://i.pinimg.com/736x/8a/54/0f/8a540fedf1a850698963c1f580d201ae.jpg'); /* 종이 질감 텍스처 */
+            background-repeat: repeat; /* 배경 반복 */
+            background-size: cover; /* 화면을 꽉 채움 */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 75px; /* 전체 요소 아래로 이동 */
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700; /* 굵게 설정 */
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: 333; /* 서브타이틀 색상 변경 */
+        }
+
+        .quote {
+            font-family: 'Noto Serif KR', serif; /* 박스 안의 폰트 */
+            font-size: 18px;
+            margin: 20px auto;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px; /* 각진 모서리 */
+            max-width: 600px;
+            background: #fffdf5;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #quote-text {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: #bbb;
+            margin: 10px auto;
+            display: none; /* 기본적으로 작대기는 숨김 */
+        }
+
+        .source {
+            font-size: 13px;
+            color: #777;
+            font-style: italic;
+            margin-top: 12px;
+            white-space: pre-line; /* 줄 바꿈을 제대로 반영하도록 설정 */
+        }
+
+        /* 새로 추가된 작은 출처 스타일 */
+        .second-source {
+            font-size: 11px; /* 기존 출처보다 작은 크기 */
+            color: #888;
+            font-style: italic;
+            margin-top: 4px; /* 위쪽 간격 조정 */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #7a8b8b; /* 버튼 색상 변경 */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #556b6b; /* 버튼 호버 색상 */
+        }
+    </style>
+</head>
+<body>
+    <h1>오늘의 詩, 오늘의 문장</h1>
+    <div class="subtitle">☕ 당신의 하루를 위한 시 구절 ☕</div>
+
+    <div class="quote" id="quote">
+        <div id="quote-text">버튼을 눌러 오늘의 시를 만나보세요</div>
+        <div class="divider" id="divider"></div>
+        <div class="source" id="quote-source"></div>
+        <!-- 추가된 두 번째 출처 -->
+        <div class="second-source" id="second-quote-source"></div>
+    </div>
+
+    <button onclick="generateQuote()">오늘의 시 보기</button>
+
+    <script>
+        const quotes = [
+            { text: "무무는 인연을 이마에 붙였다 뗐다 한다,<br>쏟아지는 야광 아래 누워, 인연은 세상이<br>우연으로 점철돼 있다고 믿기엔<br>너무 쓸쓸하다는,<br>어린왕자의 의뢰로 만든 반짝이 스티커", source: "「나는 다시 발명되어야 한다」", secondSource: "이현호 시,『라이터 좀 빌립시다』" },
+            { text: "나는 존재하는 것<br>그러므로 용기란 얼마나 무책임한 것인가,<br>보라.", source: "「오래된 서적」", secondSource: " 기형도 시,『입 속의 검은 잎』" },
+        ];
+
+        let usedQuotes = [];
+
+        function generateQuote() {
+            const divider = document.getElementById('divider');
+            if (usedQuotes.length === quotes.length) {
+                usedQuotes = [];
+                document.getElementById('quote-text').innerHTML = "모든 문구를 보셨습니다. 새로 고침을 해주세요!";
+                document.getElementById('quote-source').textContent = "";
+                document.getElementById('second-quote-source').textContent = "";  // 두 번째 출처 초기화
+                divider.style.display = 'none'; // 안내 박스에서 작대기 숨김
+                return;
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * quotes.length);
+            } while (usedQuotes.includes(randomIndex));
+
+            usedQuotes.push(randomIndex);
+
+            const selectedQuote = quotes[randomIndex];
+
+            document.getElementById('quote-text').innerHTML = selectedQuote.text;
+            document.getElementById('quote-source').textContent = selectedQuote.source;
+            document.getElementById('second-quote-source').textContent = selectedQuote.secondSource; // 두 번째 출처 표시
+            divider.style.display = 'block'; // 작대기 표시
+        }
+    </script>
+</body>
+</html>
