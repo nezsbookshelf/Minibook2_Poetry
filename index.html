@@ -22,17 +22,20 @@
             font-family: 'Noto Serif KR', serif; /* 타이틀과 서브타이틀에 사용할 폰트 */
             text-align: center;
             margin: 0;
-            height: 100vh;
-            background-color: #fef8e4; /* 따뜻한 톤 배경 */
+            min-height: 100vh; /* 최소 높이 설정 */
+            background-color: #4e5840; /* 배경 끝과 같은 색 */
             color: #333;
-            background-image: url('https://i.pinimg.com/736x/8a/54/0f/8a540fedf1a850698963c1f580d201ae.jpg'); /* 종이 질감 텍스처 */
-            background-repeat: repeat; /* 배경 반복 */
-            background-size: cover; /* 화면을 꽉 채움 */
+            background-image: url('https://i.pinimg.com/736x/4c/e2/b9/4ce2b916c0fd4940167a1329d236edce.jpg'); /* 배경 이미지 */
+            background-repeat: no-repeat; /* 배경 반복 제거 */
+            background-size: cover; /* 화면 크기에 맞게 이미지 확대 */
+            background-position: center top; /* 이미지 시작점을 중앙으로 */
+            background-attachment: scroll; /* 스크롤 시 배경 이동 */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             padding-top: 75px; /* 전체 요소 아래로 이동 */
+            padding-bottom: 100px; /* 하단 여백 추가 */
         }
 
         h1 {
