@@ -210,8 +210,31 @@
                 divider.style.display = 'none'; // 안내 박스에서 작대기 숨김
                 return;
             }
+                let randomIndex;
+                let selectedQuote;
+                let safetyCounter = 0; // 무한 루프 방지
 
-            let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * quotes.length);
+                    selectedQuote = quotes[randomIndex];
+                    safetyCounter++;
+
+                    // 100번 반복해도 조건 만족 못하면 루프 종료
+                    if (safetyCounter > 100) break;
+                } while (
+                    usedQuotes.includes(randomIndex) || 
+                    selectedQuote.source === lastSource
+                );
+
+                usedQuotes.push(randomIndex);
+                lastSource = selectedQuote.source; // 마지막 출처 저장
+
+                document.getElementById('quote-text').innerHTML = selectedQuote.text;
+                document.getElementById('quote-source').textContent = selectedQuote.source;
+                document.getElementById('quote-source').innerHTML = selectedQuote.source;
+                divider.style.display = 'block';
+            
+           /*let randomIndex;
             do {
                 randomIndex = Math.floor(Math.random() * quotes.length);
             } while (usedQuotes.includes(randomIndex));
@@ -226,7 +249,7 @@
             divider.style.display = 'block'; // 작대기 표시
 
              // 👉 여기 추가
-            document.querySelector('button').style.display = 'none';
+            document.querySelector('button').style.display = 'none';*/
 
         }
     </script>
