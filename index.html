@@ -198,18 +198,23 @@
             
         ];
 
-        let usedQuotes = [];
+    
+            let usedQuotes = [];
+            let lastSource = null;  // 마지막 문장의 책 제목 저장
 
-        function generateQuote() {
-            const divider = document.getElementById('divider');
-            if (usedQuotes.length === quotes.length) {
-                usedQuotes = [];
-                document.getElementById('quote-text').innerHTML = "모든 문구를 보셨습니다.<br>새로 고침을 해주세요!";
-                document.getElementById('quote-source').textContent = "";
-                document.getElementById('second-quote-source').textContent = "";  // 두 번째 출처 초기화
-                divider.style.display = 'none'; // 안내 박스에서 작대기 숨김
-                return;
-            }
+            function generateQuote() {
+                const divider = document.getElementById('divider');
+
+                // 모든 문장을 다 봤을 경우
+                if (usedQuotes.length === quotes.length) {
+                    usedQuotes = [];
+                    lastSource = null; // 마지막 출처도 초기화
+                    document.getElementById('quote-text').innerHTML = "모든 문구를 보셨습니다.<br>새로 고침을 해주세요!";
+                    document.getElementById('quote-source').textContent = "";
+                    document.getElementById('second-quote-source').textContent = "";
+                    divider.style.display = 'none';
+                    return;
+                }
                 let randomIndex;
                 let selectedQuote;
                 let safetyCounter = 0; // 무한 루프 방지
@@ -234,7 +239,19 @@
                 document.getElementById('quote-source').innerHTML = selectedQuote.source;
                 divider.style.display = 'block';
             
-           /*let randomIndex;
+           /*let usedQuotes = [];
+
+        function generateQuote() {
+            const divider = document.getElementById('divider');
+            if (usedQuotes.length === quotes.length) {
+                usedQuotes = [];
+                document.getElementById('quote-text').innerHTML = "모든 문구를 보셨습니다.<br>새로 고침을 해주세요!";
+                document.getElementById('quote-source').textContent = "";
+                document.getElementById('second-quote-source').textContent = "";  // 두 번째 출처 초기화
+                divider.style.display = 'none'; // 안내 박스에서 작대기 숨김
+                return;
+            }
+           let randomIndex;
             do {
                 randomIndex = Math.floor(Math.random() * quotes.length);
             } while (usedQuotes.includes(randomIndex));
